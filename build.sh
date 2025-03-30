@@ -33,6 +33,10 @@ function build_super {
         --output_ota
 }
 
-build_qssi
-build_target
-build_super
+if [ "$1" = 'full' ]; then
+    build_qssi
+    build_target
+    build_super
+else
+    build_target
+fi

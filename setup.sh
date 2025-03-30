@@ -24,8 +24,13 @@ function sync_repo {
     fi
 }
 
-sync_repo "$QSSI_ROOT" "qssi.xml"
-sync_repo "$VENDOR_ROOT" "target.xml"
+if [ "$1" = 'full' ]; then
+    echo -e "\nSetting up for full package build...\n"
+    sync_repo "$QSSI_ROOT" "qssi.xml"
+    sync_repo "$VENDOR_ROOT" "target.xml"
+else
+    sync_repo "$VENDOR_ROOT" "target.xml"
+fi
 
 cd "$BUILD_ROOT"
 echo "[+] Successfully returned to the build root."
